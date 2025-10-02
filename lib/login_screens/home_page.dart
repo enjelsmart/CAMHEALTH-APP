@@ -125,12 +125,12 @@ class _HomePageState extends State<HomePage> {
         child: SafeArea(
           child: Column(children: [
             // Header
-            Container(padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12), width: double.infinity, child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              const Text('CamHealth Dashboard', style: TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold)),
+            Container(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12), width: double.infinity, child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              const Text('CamHealth Dashboard', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
               IconButton(onPressed: _logout, icon: const Icon(Icons.logout, color: Colors.white, size: 28), tooltip: 'Logout'),
             ])),
             // Search Bar
-            Container(padding: const EdgeInsets.symmetric(horizontal: 16.0), child: Card(color: Colors.white.withOpacity(0.9), child: TextField(controller: _searchController, decoration: InputDecoration(
+            Container(padding: const EdgeInsets.symmetric(horizontal: 15.0), child: Card(color: Colors.white.withOpacity(0.9), child: TextField(controller: _searchController, decoration: InputDecoration(
               hintText: 'Cari course...',
               hintStyle: const TextStyle(color: Colors.grey),
               prefixIcon: const Icon(Icons.search, color: Colors.grey),
@@ -138,9 +138,9 @@ class _HomePageState extends State<HomePage> {
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
               filled: true,
               fillColor: Colors.white.withOpacity(0.8),
-              contentPadding: const EdgeInsets.symmetric(vertical: 12),
+              contentPadding: const EdgeInsets.symmetric(vertical: 10),
             ), onChanged: (value) => _onSearchChanged()))),
-            // Section 1: Courses Terbaru
+
             Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Padding(padding: const EdgeInsets.all(16.0), child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 const Text('Courses Terbaru', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
@@ -171,15 +171,15 @@ class _HomePageState extends State<HomePage> {
             // Section 2: Rekomendasi Courses
             Container(padding: const EdgeInsets.all(16.0), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const Text('Rekomendasi Courses', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 12),
-              SizedBox(height: 240, child: ListView.builder(
+              const SizedBox(height: 10),
+              SizedBox(height: 172, child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 itemCount: daftarRekomendasiCourses.length,
                 itemBuilder: (context, index) {
                   final course = daftarRekomendasiCourses[index];
                   return Container(
-                    width: 160,
+                    width: 135,
                     margin: const EdgeInsets.symmetric(horizontal: 8),
                     child: Card(
                       color: Colors.white.withOpacity(0.95),
@@ -193,9 +193,9 @@ class _HomePageState extends State<HomePage> {
                           Expanded(child: _buildImagePlaceholder(course.gambar)),
                           Padding(padding: const EdgeInsets.all(8.0), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                             Text(course.judul, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14), maxLines: 1, overflow: TextOverflow.ellipsis),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 3),
                             Text(course.deskripsi, style: const TextStyle(fontSize: 12, color: Colors.black54), maxLines: 2, overflow: TextOverflow.ellipsis),
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 3),
                             Text(course.getDetailInfo(), style: const TextStyle(fontSize: 11, color: Colors.grey)),
                           ])),
                         ]),

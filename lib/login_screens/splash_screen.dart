@@ -50,7 +50,7 @@ class _SplashPageState extends State<SplashPage> {
                     ),
                     const SizedBox(height: 24),
                     const Text(
-                      'CamHealth',
+                      'Welcome To',
                       style: TextStyle(
                         fontSize: 28,
                         color: Colors.white,
@@ -60,7 +60,7 @@ class _SplashPageState extends State<SplashPage> {
                     ),
                     const SizedBox(height: 8),
                     const Text(
-                      'Welcome To!',
+                      'CAMHEALTH',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white70,
@@ -96,10 +96,10 @@ class _SplashPageState extends State<SplashPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: const Text(
-                      'Dibuat oleh Viktoria Angelita Setiabudi',
+                      'By Viktoria Angelita Setiabudi',
                       style: TextStyle(
                         fontSize: 14,
-                        color: Color.fromARGB(179, 0, 48, 115),
+                        color: Color.fromRGBO(155, 197, 255, 0.702),
                         fontWeight: FontWeight.w300,
                       ),
                       textAlign: TextAlign.center,

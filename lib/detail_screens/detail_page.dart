@@ -79,7 +79,7 @@ class DetailPage extends StatelessWidget {
 
             const SizedBox(height: 16),
 
-            // Deskripsi teks panjang di bawahnya
+            
             Text(
               deskripsi,
               style: const TextStyle(
