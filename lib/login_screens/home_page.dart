@@ -125,7 +125,7 @@ class _HomePageState extends State<HomePage> {
         child: SafeArea(
           child: Column(children: [
             // Header
-            Container(padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12), width: double.infinity, child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Container(padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14), width: double.infinity, child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               const Text('CamHealth Dashboard', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
               IconButton(onPressed: _logout, icon: const Icon(Icons.logout, color: Colors.white, size: 28), tooltip: 'Logout'),
             ])),
@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
               border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
               filled: true,
               fillColor: Colors.white.withOpacity(0.8),
-              contentPadding: const EdgeInsets.symmetric(vertical: 10),
+              contentPadding: const EdgeInsets.symmetric(vertical: 12),
             ), onChanged: (value) => _onSearchChanged()))),
 
             Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                   return Card(
                     color: Colors.white.withOpacity(0.9),
                     elevation: 2,
-                    margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+                    margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                     child: ListTile(
                       title: Text(course.judul, style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black87)),
                       subtitle: Text(course.getDetailInfo(), style: const TextStyle(color: Colors.black54)),
