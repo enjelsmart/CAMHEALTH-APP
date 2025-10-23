@@ -10,22 +10,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.8
+  provider: ^6.1.5+1
+  shared_preferences: ^2.2.2  # Tambahkan ini untuk penyimpanan data login (auto-login, remember me)
 
 dev_dependencies:
-    flutter_test:
-      sdk: flutter
-
-    flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
   assets:
-    - assets/logo.jpg  # Aset lama
-    - assets/image/gambar11.jpg  # Gambar baru 1
-    - assets/image/gambar12.jpg  
+    - assets/logo.jpg
+    - assets/image/gambar11.jpg
+    - assets/image/gambar12.jpg
     - assets/image/gambar13.jpg
     - assets/image/gambar14.jpg
     - assets/image/gambar15.jpg
     - assets/image/gambar16.jpg
+    - assets/image/gambar9.jpeg

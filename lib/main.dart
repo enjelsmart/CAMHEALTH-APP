@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'providers/cart_provider.dart';
 
 import 'login_screens/splash_screen.dart';
 import 'login_screens/login_page.dart';
 import 'login_screens/register_page.dart';
 import 'login_screens/forgot_password.dart';
 import 'login_screens/home_page.dart';
+import 'detail_screens/checkout_page.dart'; // Tambahkan import ini
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => CartProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -41,6 +49,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => const RegisterPage(),
         '/forgot_password': (context) => const ForgotPasswordPage(),
         '/home': (context) => HomePage(onLogout: () {}),
+        '/checkout': (context) => const CheckoutPage(), // Tambahkan route ini
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(

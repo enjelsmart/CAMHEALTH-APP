@@ -1,93 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../model/content_model.dart';
+import '../providers/cart_provider.dart';
 
 class DetailPage extends StatelessWidget {
-  final String judul;
-  final String deskripsi;
-  final String? gambarPath;      
-  final String? gambarBesarPath; 
+  final CourseModel course;
 
-  const DetailPage({
-    Key? key,
-    required this.judul,
-    required this.deskripsi,
-    this.gambarPath,
-    this.gambarBesarPath,
-  }) : super(key: key);
+  const DetailPage({super.key, required this.course});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(judul)),
+      appBar: AppBar(title: Text(course.judul)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            
-            if (gambarBesarPath != null) ...[
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  gambarBesarPath!,
-                  width: double.infinity,  
-                  height: 250,             
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(
-                    width: double.infinity,
-                    height: 250,
-                    color: Colors.grey[300],
-                    child: const Icon(Icons.image_not_supported, size: 50, color: Colors.grey),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 16), 
+            if (course.gambar != null && course.gambar!.isNotEmpty) ...[
+              Image.asset(course.gambar!, width: double.infinity, height: 200, fit: BoxFit.cover, errorBuilder: (_, __, ___) => const SizedBox(height: 200, child: Center(child: Icon(Icons.broken_image)))),
+              const SizedBox(height: 12),
             ],
-
-           
+            Text(course.judul, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 8),
+            Text(course.deskripsi ?? '', style: const TextStyle(fontSize: 14)),
+            const Spacer(),
             Row(
               children: [
                 Expanded(
-                  child: Text(
-                    judul,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
+                  child: ElevatedButton.icon(
+                    icon: const Icon(Icons.add_shopping_cart),
+                    label: const Text('Tambah ke Keranjang'),
+                    onPressed: () {
+                      Provider.of<CartProvider>(context, listen: false).addCourse(course);
+                      // Hapus snackbar lama, ganti dengan navigasi
+                      Navigator.pushNamed(context, '/checkout'); // Navigasi ke CheckoutPage
+                    },
                   ),
                 ),
-                if (gambarPath != null) ...[
-                  const SizedBox(width: 16),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: Image.asset(
-                      gambarPath!,
-                      width: 120,
-                      height: 120,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => Container(
-                        width: 120,
-                        height: 120,
-                        color: Colors.grey[300],
-                        child: const Icon(Icons.image_not_supported, color: Colors.grey),
-                      ),
-                    ),
-                  ),
-                ],
               ],
-            ),
-
-            const SizedBox(height: 16),
-
-            
-            Text(
-              deskripsi,
-              style: const TextStyle(
-                fontSize: 16,
-                height: 1.5,
-                color: Colors.black54,
-              ),
-            ),
+            )
           ],
         ),
       ),

@@ -1,4 +1,4 @@
-import '../login_screens/home_page.dart'; // Import CourseModel dari home_page.dart (atau pindah ke models/ jika mau rapi)
+import 'content_model.dart';
 
 class CartItem {
   final CourseModel course;
@@ -6,13 +6,10 @@ class CartItem {
 
   CartItem({required this.course, this.quantity = 1});
 
-  double get totalHarga => _parseHarga(course.harga) * quantity;
-
-  double _parseHarga(String hargaStr) {
-    if (hargaStr == 'Gratis') return 0.0;
-    return double.tryParse(
-          hargaStr.replaceAll('Rp ', '').replaceAll('.', ''),
-        ) ??
-        0.0;
+  double get totalHarga {
+    // ambil angka dari string harga (mis. "Rp 75.000" -> 75000)
+    final cleaned = course.harga.replaceAll(RegExp(r'[^0-9.]'), '');
+    final hargaNum = double.tryParse(cleaned) ?? 0.0;
+    return hargaNum * quantity;
   }
 }

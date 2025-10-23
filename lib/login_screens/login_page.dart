@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
+import 'package:shared_preferences/shared_preferences.dart'; 
 import 'forgot_password.dart';
 import 'register_page.dart';
 
@@ -21,11 +21,12 @@ class LoginPage extends BaseAuthPage {
 
 class _LoginPageState extends State<LoginPage> {
   final _LoginController _controller = _LoginController();
+
   @override
   void initState() {
     super.initState();
-
     _controller.init();
+    _checkLoginStatus(); 
   }
 
   @override
@@ -34,7 +35,21 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void handleAuthSuccess(BuildContext context) {
+
+  Future<void> _checkLoginStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+    if (isLoggedIn) {
+    
+      widget.onAuthSuccess?.call();
+    }
+  }
+
+  void handleAuthSuccess(BuildContext context) async {
+    
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', true);  
+    
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Login berhasil!'),
@@ -133,10 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: ElevatedButton(
                         onPressed: () {
                           if (_controller.validateForm(context)) {
-                            // Validasi encapsulated
-                            handleAuthSuccess(
-                              context,
-                            ); // Polymorphism: Panggil method di State
+                            handleAuthSuccess(context);  // Panggil dengan penyimpanan
                           }
                         },
                         style: ElevatedButton.styleFrom(
