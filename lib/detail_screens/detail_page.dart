@@ -33,8 +33,8 @@ class DetailPage extends StatelessWidget {
                     label: const Text('Tambah ke Keranjang'),
                     onPressed: () {
                       Provider.of<CartProvider>(context, listen: false).addCourse(course);
-                      // Hapus snackbar lama, ganti dengan navigasi
-                      Navigator.pushNamed(context, '/checkout'); // Navigasi ke CheckoutPage
+                     
+                      Navigator.pushNamed(context, '/checkout'); 
                     },
                   ),
                 ),
